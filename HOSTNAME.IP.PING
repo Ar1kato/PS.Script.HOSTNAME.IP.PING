@@ -1,0 +1,16 @@
+$PC_list = Get-Content -Path C:\data_files\test0902.txt
+
+ForEach($pc in $PC_list) {
+
+        $musja = Test-Connection "$pc" -Count 1 -BufferSize 16 -Quiet
+
+        if($musja -match "True") {
+        Test-Connection $pc -Count 1 | select @{Name="HostName";Expression={ $pc }}, IPV4Address, @{Name="Connection";Expression={ "Ping" }}
+        
+        }
+
+        else { 
+        $pc | select @{Name="Name";Expression={ $pc }}, IPV4Address, @{Name="Connection";Expression={ "No ping" }}
+        
+    }
+    }
