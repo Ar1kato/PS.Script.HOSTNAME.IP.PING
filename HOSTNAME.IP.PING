@@ -10,7 +10,7 @@ ForEach($pc in $PC_list) {
         }
 
         else { 
-        $pc | select @{Name="Name";Expression={ $pc }}, IPV4Address, @{Name="Connection";Expression={ "No ping" }}
+        $pc | select @{Name="HostName";Expression={ $pc }}, IPV4Address, @{Name="Connection";Expression={ "No ping" }}
         
     }
     }
